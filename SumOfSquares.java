@@ -12,10 +12,10 @@ public class SumOfSquares
         numbers.add(4);
         numbers.add(5);
         numbers.add(8);
-        int squaresSum=numbers.stream().
-                filter(n->n%2==0).
-                map(n->n*n).
-                reduce(0,(a,b) -> a+b);
-        System.out.println("sum Of sqaues: "+squaresSum);
+        int squaresSum=numbers.stream()
+                .filter(n->n%2==0)
+                .map(n->n*n)
+                .reduce(0,(a,b) -> a+b);
+        System.out.println("sum Of squares: "+squaresSum);
     }
 }
