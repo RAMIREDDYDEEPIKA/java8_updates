@@ -47,14 +47,19 @@ public class PolicyHandler {
                     } catch (NumberFormatException e) {
                         return false;
                     }
-                }).collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
         System.out.println("filtering policies by premium amount:");
         policyFilter.forEach(policy -> System.out.println(policy.policyNumber + " - " + policy.holderName + " - " + policy.premiumAmount));
 
-        List<Policy> sortByHolderName=policyData.stream().sorted(Comparator.comparing(Policy::getHolderName)).collect(Collectors.toList());
+        List<Policy> sortByHolderName=policyData.stream()
+                .sorted(Comparator.comparing(Policy::getHolderName))
+                .collect(Collectors.toList());
         System.out.println("\nSorted by holder name:\n "+sortByHolderName);
 
-        double totalPremium = policyData.stream().mapToDouble(policy -> Double.parseDouble(policy.premiumAmount)).sum();
+        double totalPremium = policyData.stream()
+                .mapToDouble(policy -> Double.parseDouble(policy.premiumAmount))
+                .sum();
         System.out.println("\ntotal premium amount:\n "+totalPremium);
 
         System.out.println("\nPolicy details: ");
@@ -73,24 +78,34 @@ public class PolicyHandler {
         }
 
         System.out.println("\npolicy with Highest premium:");
-        policyData.stream().max(Comparator.comparingDouble(policy -> Double.parseDouble(policy.premiumAmount))).ifPresent(policy -> System.out.println(policy.policyNumber));
+        policyData.stream()
+                .max(Comparator.comparingDouble(policy -> Double.parseDouble(policy.premiumAmount)))
+                .ifPresent(policy -> System.out.println(policy.policyNumber));
 
-        Map<Character, List<Policy>> groupedByInitial = policyData.stream().collect(Collectors.groupingBy(policy -> policy.holderName.charAt(0)));
+        Map<Character, List<Policy>> groupedByInitial = policyData.stream()
+                .collect(Collectors.groupingBy(policy -> policy.holderName.charAt(0)));
         System.out.println("\ngrouping by Holder name initial:");
         System.out.println(groupedByInitial);
 
-        double averagePremium = policyData.stream().mapToDouble(policy -> Double.parseDouble(policy.premiumAmount)).average().orElse(0);
+        double averagePremium = policyData.stream()
+                .mapToDouble(policy -> Double.parseDouble(policy.premiumAmount))
+                .average()
+                .orElse(0);
         System.out.println("\ncalculating avg premium:");
         System.out.println(averagePremium);
 
         System.out.println("\nSorting policies by premium:");
-        policyData.stream().sorted(Comparator.comparingDouble(policy -> Double.parseDouble(policy.premiumAmount))).forEach(policy -> System.out.println(policy.policyNumber + " - " + policy.premiumAmount));
+        policyData.stream()
+                .sorted(Comparator.comparingDouble(policy -> Double.parseDouble(policy.premiumAmount)))
+                .forEach(policy -> System.out.println(policy.policyNumber + " - " + policy.premiumAmount));
 
-        boolean anyPolicyExceeds2000 = policyData.stream().anyMatch(policy -> Double.parseDouble(policy.premiumAmount) > 2000);
+        boolean anyPolicyExceeds2000 = policyData.stream()
+                .anyMatch(policy -> Double.parseDouble(policy.premiumAmount) > 2000);
         System.out.println("\nchecking policies that exceeds 2000:");
         System.out.println(anyPolicyExceeds2000);
 
-        Map<String, Long> premiumRangeCount = policyData.stream().collect(Collectors.groupingBy(policy -> {
+        Map<String, Long> premiumRangeCount = policyData.stream()
+                .collect(Collectors.groupingBy(policy -> {
             double premium = Double.parseDouble(policy.premiumAmount);
             if (premium <= 1000) return "$0-$1000";
             else if (premium <= 2000) return "$1001-$2000";
@@ -117,7 +132,8 @@ public class PolicyHandler {
             System.out.println(policy);
         }
 
-        Map<String, Double> policyMap = policyData.stream().collect(Collectors.toMap(policy -> policy.policyNumber, policy -> Double.parseDouble(policy.premiumAmount)));
+        Map<String, Double> policyMap = policyData.stream()
+                .collect(Collectors.toMap(policy -> policy.policyNumber, policy -> Double.parseDouble(policy.premiumAmount)));
         System.out.println("\ncreating Map of Policy Numbers to Premium Amounts");
         System.out.println(policyMap);
 
