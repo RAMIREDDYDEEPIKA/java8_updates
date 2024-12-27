@@ -6,9 +6,11 @@ import java.util.Comparator;
 import java.util.List;
 
 class Person{
+
     String name;
     int age;
     String sal;
+
     public Person(String name,int age,String sal){
         this.name=name;
         this.age=age;
