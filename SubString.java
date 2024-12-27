@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class SubString
-{
+public class SubString {
+
     public static void main(String[] args) {
 
         List<String> inputStrings= new ArrayList<>();
@@ -21,7 +21,9 @@ public class SubString
         Predicate<String> subString=word->word.contains("easi");
 
         Predicate<String> combinedPredicates=strLength.and(subString);
-        List<String> result=inputStrings.stream().filter(combinedPredicates).collect(Collectors.toList());
+        List<String> result=inputStrings.stream()
+                .filter(combinedPredicates)
+                .collect(Collectors.toList());
 
         System.out.println(result);
     }
