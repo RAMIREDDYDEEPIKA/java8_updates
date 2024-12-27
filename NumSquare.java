@@ -1,4 +1,5 @@
 package com.functional;
+
 interface CalculateSquare{
 
     int square(int number);
