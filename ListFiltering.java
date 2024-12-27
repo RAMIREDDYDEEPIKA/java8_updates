@@ -14,7 +14,9 @@ public class ListFiltering {
         inputString.add("Ashika");
         inputString.add("ashu");
 
-        List<String> filteredList=inputString.stream().filter(word->word.toUpperCase().startsWith("A")).collect(Collectors.toList());
+        List<String> filteredList=inputString.stream()
+                .filter(word->word.toUpperCase().startsWith("A"))
+                .collect(Collectors.toList());
         System.out.println(filteredList);
     }
 }
